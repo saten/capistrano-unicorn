@@ -100,6 +100,8 @@ module CapistranoUnicorn
             unless pid.nil?
               logger.important("Restarting...", "Unicorn")
               unicorn_send_signal(pid, 'USR2')
+		sleep 1
+              unicorn_send_signal(pid, 'SIGQUIT')
             else
               unicorn.start
             end
